@@ -1,0 +1,677 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "CBL Partner APIs",
+    "description": "This is test on CBL APIs",
+    "contact": {
+      "email": "william.kamuyu@gapstack.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://konnectapigateway.creditbank.co.ke",
+      "description": "CBL Dev API Gateway"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Networking",
+      "description": "Networking API"
+    },
+    {
+      "name": "Notifications",
+      "description": "Instant Payment Notifications"
+    }
+  ],
+   "paths": {
+    "/network-request": {
+      "get": {
+        "tags": [
+          "Networking"
+        ],
+        "summary": "Checks on the CBS if its up or down",
+        "description": "Network Request on the CBS\n",
+        "operationId": "networkRequest",
+        "parameters": [
+          {
+            "name": "x-app-id",
+            "in": "header",
+            "description": "pass the project id",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "api-key",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully created standing order",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/networkingResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      }
+    },
+     "/ipn": {
+      "get": {
+        "tags": [
+          "Notifications"
+        ],
+        "summary": "Sends Notifications to Merchants Endpoint",
+        "description": "Send Notification to Clients Webhook\n",
+        "operationId": "instantPaymentNotification",
+        "parameters": [
+          {
+            "name": "x-app-id",
+            "in": "header",
+            "description": "pass the project id",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "api-key",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Send Notification after transaction",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ipnRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Notification saved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ipnResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      }
+    },
+     "/balance-inquiry": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Get account balance",
+        "description": "Get account balance\n",
+        "operationId": "balanceInquiry",
+        "parameters": [
+          {
+            "name": "x-app-id",
+            "in": "header",
+            "description": "pass the project id",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "api-key",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Create a balance inquiry Request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/balanceInquiryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created standing order",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/balanceInquiryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      }
+    },
+     "/account-lookup": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "Check Account Availability",
+        "description": "Check Account Availability\n",
+        "operationId": "accountLookup",
+        "parameters": [
+          {
+            "name": "x-app-id",
+            "in": "header",
+            "description": "pass the project id",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "api-key",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Check Availabilty of An Account",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/accountLookupRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created standing order",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/accountLookupResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      }
+    },
+    "/internal-fund-transfer": {
+      "post": {
+        "tags": [
+          "Send Money"
+        ],
+        "summary": "Transfer funds from your CBL account to other CBL accounts",
+        "description": "Transfer funds from your CBL account to other CBL accounts\n",
+        "operationId": "internalFundTransfer",
+        "parameters": [
+          {
+            "name": "x-app-id",
+            "in": "header",
+            "description": "pass the project id",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "api-key",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Internal Funds Transfer Request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/internalFundTransferRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully transfered the funds",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/defaultResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      }
+    },
+    "/consumer-internal-ft": {
+      "post": {
+        "tags": [
+          "Send Money"
+        ],
+        "summary": "Transfer funds from your CBL account to other CBL accounts",
+        "description": "Transfer funds from your CBL account to other CBL accounts\n",
+        "operationId": "internalFundsTransfer",
+        "parameters": [
+          {
+            "name": "x-app-id",
+            "in": "header",
+            "description": "pass the project id",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "api-key",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Internal Funds Transfer Request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/consumerInternalFtRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully transfered the funds",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/defaultResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      }
+    },
+    "/transaction-reversal": {
+      "post": {
+        "tags": [
+          "Send Money"
+        ],
+        "summary": "Reverse a made transaction using the the reference number",
+        "description": "Reverse a made transaction using the the reference number\n",
+        "operationId": "transactionReversal",
+        "parameters": [
+          {
+            "name": "x-app-id",
+            "in": "header",
+            "description": "pass the project id",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "api-key",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Transaction Reversal Request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/transactionReversalRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully transfered the funds",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/transactionReversalResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      }
+    }
+   },
+   "components": {
+    "schemas": {
+      "ipnRequest": {
+        "required": [
+          "notificationType",
+          "notificationSubType",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "notificationType": {
+            "type": "string",
+            "example": "FT"
+          },
+          "notificationSubType": {
+            "type": "string",
+            "example": "CBS_FT"
+          },
+          "data": {
+            "type": "object",
+            "example":{
+              "amount":"300",
+              "transactionType":"credit",
+              "transactionReference":"12345",
+              "CBSReference": "FT22321YXDV8",
+              "mobileNumber": "254727123456",
+              "momoReference": "RTGH87685",
+              "custAccount": "0021024000038",
+              "timestamp": "2023-01-13 12:40:55"
+            }
+          }
+        }
+      },
+      "balanceInquiryRequest": {    
+        "type": "object",
+        "properties": {
+           "account": {
+             "type":"string",
+             "example":"0021024000038"
+
+           }
+        }
+      },
+      "accountLookupRequest": {    
+        "type": "object",
+        "properties": {
+           "account": {
+             "type":"string",
+             "example":"0021024000038"
+
+           }
+        }
+      },
+      "transactionReversalRequest": {    
+        "type": "object",
+        "properties": {
+           "account": {
+             "type":"string",
+             "example":"0021024000038"
+
+           },
+           "referenceNumber": {
+            "type": "string",
+            "example": "FT24002MDBWZ"
+           }
+        }
+      },
+      "internalFundTransferRequest": {
+        "required": [
+          "amount",
+          "accountTo",
+          "accountFrom",
+          "endToEndRef",
+          "paymentNarrative"
+        ],
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "example": 3000
+          },
+          "accountTo": {
+            "type": "string",
+            "example": "0021024000039"
+          },
+            "accountFrom": {
+            "type": "string",
+            "example": "0021024000038"
+          },
+            "endToEndRef": {
+              "type":"string",
+              "example": "ADHDKDUDHSJ"
+          },
+          "paymentNarrative": {
+            "type": "string",
+            "example": "Transfer funds from your CBL account to other CBL accounts"
+          }
+        }
+      },
+      "consumerInternalFtRequest": {
+        "required": [
+          "amount",
+          "accountTo",
+          "accountFrom",
+          "endToEndRef",
+          "paymentNarrative"
+        ],
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "example": 3000
+          },
+          "accountTo": {
+            "type": "string",
+            "example": "0021024000039"
+          },
+            "accountFrom": {
+            "type": "string",
+            "example": "0021024000038"
+          },
+            "endToEndRef": {
+              "type":"string",
+              "example": "ADHDKDUDHSJ"
+          },
+          "paymentNarrative": {
+            "type": "string",
+            "example": "Transfer funds from your CBL account to other CBL accounts"
+          }
+        }
+      },
+       "networkingResponse": {
+        "type": "object",
+        "properties": {
+          "Response code": {
+            "type": "string",
+            "example": "00"
+          },
+          "Date and time transmission": {
+            "type": "string",
+            "example": "0612095546"
+          }
+        }
+      },
+       "balanceInquiryResponse": {
+        "type": "object",
+        "properties": {
+          "responseCode": {
+            "type": "string",
+            "example": "00"
+          },
+          "dateAndTimeTransmission": {
+            "type": "string",
+            "example": "0306150321"
+          },
+          "currencyCode": {
+            "type": "string",
+            "example": "404"
+          },
+          "actualBalance": {
+            "type": "string",
+            "example": "20000"
+          },
+          "availableBalance": {
+            "type": "string",
+            "example": "20000"
+          }
+        }
+      },
+      "accountLookupResponse": {
+        "type": "object",
+        "properties": {
+          "responseCode": {
+            "type": "string",
+            "example": "00"
+          },
+          "dateAndTimeTransmission": {
+            "type": "string",
+            "example": "0306150321"
+          },
+          "currencyCode": {
+            "type": "string",
+            "example": "404"
+          },
+          "accountDetails": {
+            "type": "string",
+            "example": "1000013547|CREDIT BANK LTD||*|KES|OK|KE0010002|84467963.4"
+          },
+          "category": {
+            "type": "string",
+            "example": "0021024000038"
+          }
+        }
+      },
+       "transactionReversalResponse": {
+        "type": "object",
+        "properties": {
+          "responseCode": {
+            "type": "string",
+            "example": "00"
+          },
+          "dateAndTimeTransmission": {
+            "type": "string",
+            "example": "0306150321"
+          },
+          "currencyCode": {
+            "type": "string",
+            "example": "404"
+          },
+      
+          "availableBalance": {
+            "type": "string",
+            "example": "20000"
+          }
+        }
+      },
+       "ipnResponse": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "example": "201"
+          },
+          "message": {
+            "type": "string",
+            "example": "Notification saved successfully"
+          },
+          "data": {
+            "type": "string",
+            "example": "null"
+          }
+        }
+      }
+    }
+  }
+}
