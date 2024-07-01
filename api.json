@@ -1,10 +1,10 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "CBL APIs",
-    "description": "This is test on CBL APIs",
+    "title": "Gapstack Gateway APIs",
+    "description": "This is test on Gapstack Gateway APIs",
     "contact": {
-      "email": "it@creditbank.co.ke"
+      "email": "william.kamuyu@gapstack.co.ke"
     },
     "license": {
       "name": "Apache 2.0",
@@ -14,8 +14,8 @@
   },
   "servers": [
     {
-      "url": "https://sandboxkonnectapi.creditbank.co.ke",
-      "description": "CBL Dev API Gateway"
+      "url": "http://20.110.205.90",
+      "description": "Gaptack Sandbox API Gateway"
     }
   ],
   "tags": [
